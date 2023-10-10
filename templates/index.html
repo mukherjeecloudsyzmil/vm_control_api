@@ -2,21 +2,26 @@
 <html>
 <head>
     <title>VM Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>List of VMs</h1>
-    <ul>
-        {% for vm_name in vm_names %}
-        <li>{{ vm_name }}</li>
-        <form method="post" action="/start_vm">
-            <input type="hidden" name="vm_name" value="{{ vm_name }}">
-            <button type="submit">Start</button>
-        </form>
-        <form method="post" action="/stop_vm">
-            <input type="hidden" name="vm_name" value="{{ vm_name }}">
-            <button type="submit">Stop</button>
-        </form>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1 class="mt-4">List of VMs</h1>
+        <ul class="list-group">
+            {% for vm_name in vm_names %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ vm_name }}
+                <form method="post" action="/start_vm">
+                    <input type="hidden" name="vm_name" value="{{ vm_name }}">
+                    <button type="submit" class="btn btn-primary btn-sm">Start</button>
+                </form>
+                <form method="post" action="/stop_vm">
+                    <input type="hidden" name="vm_name" value="{{ vm_name }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Stop</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
